@@ -4,7 +4,6 @@
    ===================================================== */
 
 // ===== 1. DADOS DOS PRODUTOS =====
-// Em produção, isso viria do Firebase ou de uma API.
 const PRODUCTS = [
   // ---------- MONITORES ----------
   { id: 1,  name: "Monitor Gamer 27\" 165Hz",   category: "monitor",    icon: "🖥️", price: 1299.00, oldPrice: 1699.00, desc: "Full HD, IPS, 1ms, FreeSync",             rating: 5 },
@@ -232,27 +231,49 @@ function updateCheckoutSummary() {
   `;
 }
 
-// ===== 8. CONFIRMAR PEDIDO =====
-function confirmOrder() {
+// ===== 8. CONFIRMAR PEDIDO — INTEGRAÇÃO COM MERCADO PAGO =====
+async function confirmOrder() {
   const method = document.querySelector('input[name="payment"]:checked').value;
-  const total = getCartTotal();
-  const orderId = "MLK" + Date.now().toString().slice(-6);
+  const btn = document.getElementById("confirmPayment");
 
-  let msg = "";
-  if (method === "pix")    msg = `💠 Pedido ${orderId} gerado!\nQR Code Pix: R$ ${(total * 1.0099).toFixed(2)}`;
-  if (method === "card")   msg = `💳 Pedido ${orderId} aprovado!\nCobrado: R$ ${(total * 1.0399).toFixed(2)}`;
-  if (method === "boleto") msg = `🧾 Pedido ${orderId} gerado!\nBoleto: R$ ${(total + 3.49).toFixed(2)}`;
+  if (cart.length === 0) {
+    toast("🛒 Adicione produtos primeiro!");
+    return;
+  }
 
-  // Aqui você chamaria o backend / Mercado Pago.
-  console.log("Pedido melkTec:", { orderId, method, cart, total });
+  btn.disabled = true;
+  btn.textContent = "Processando...";
 
-  alert(msg + "\n\n(Em produção, aqui abriria o checkout do Mercado Pago.)");
+  // Monta a lista de itens para enviar ao Worker
+  const items = cart.map((item) => {
+    const p = PRODUCTS.find((p) => p.id === item.id);
+    return { name: p.name, qty: item.qty, price: p.price };
+  });
 
-  cart = [];
-  saveCart();
-  renderCart();
-  $("#checkoutModal").classList.remove("active");
-  toast("🎉 Pedido realizado com sucesso!");
+  try {
+    const response = await fetch(
+      "https://melktec-worker.melktec-kasao.workers.dev",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items, metodo: method }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Erro ao processar pagamento");
+    }
+
+    // Redireciona o cliente para o checkout do Mercado Pago
+    window.location.href = data.checkout_url;
+  } catch (err) {
+    console.error(err);
+    alert("❌ Erro ao iniciar pagamento: " + err.message);
+    btn.disabled = false;
+    btn.textContent = "Confirmar Pedido";
+  }
 }
 
 // ===== 9. EVENTOS =====

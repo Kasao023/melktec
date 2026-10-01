@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento em análise — melkTec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .retorno-box {
+            max-width: 520px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .retorno-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+        }
+
+        .retorno-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.15);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 28px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+        }
+
+        .retorno-box h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .retorno-box .subtitulo {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .retorno-box .info-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .retorno-box .info-card h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fbbf24;
+            margin-bottom: 12px;
+        }
+
+        .retorno-box .info-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .retorno-box .info-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .retorno-box .info-card strong {
+            color: var(--text);
+        }
+
+        .retorno-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .retorno-actions .btn {
+            width: 100%;
+            padding: 15px 24px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .retorno-box { padding: 40px 24px; border-radius: 18px; }
+            .retorno-icon { width: 100px; height: 100px; font-size: 3rem; }
+            .retorno-box h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🥛</span>
+                <span class="logo-text">melk<strong>Tec</strong></span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 60px 20px; min-height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center;">
+        <div class="retorno-box">
+            <div class="retorno-icon">⏳</div>
+
+            <h1>Pagamento em análise</h1>
+
+            <p class="subtitulo">
+                Recebemos seu pedido! Ele será liberado assim que o pagamento for confirmado.
+            </p>
+
+            <div class="info-card">
+                <h3>⏱️ O que vai acontecer</h3>
+                <p>• <strong>Boleto:</strong> compensação em 1 a 2 dias úteis.</p>
+                <p>• <strong>Pix pendente:</strong> confirme o pagamento no seu banco.</p>
+                <p>• <strong>Cartão em análise:</strong> o banco pode levar algumas horas.</p>
+                <p>Assim que o pagamento for aprovado, nossa equipe entrará em contato pelo <strong>WhatsApp</strong>.</p>
+            </div>
+
+            <div class="retorno-actions">
+                <a href="index.html" class="btn btn-primary">
+                    🛍️ Voltar à loja
+                </a>
+                <a href="https://wa.me/5515998183052?text=Ol%C3%A1!%20Fiz%20um%20pedido%20na%20melkTec%20e%20o%20pagamento%20est%C3%A1%20em%20an%C3%A1lise.%20Pode%20me%20dar%20um%20retorno%3F" 
+                   target="_blank" 
+                   class="btn btn-ghost">
+                    💬 Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 melkTec. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

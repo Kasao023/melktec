@@ -1,225 +1,530 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="melkTec — Monitores, computadores, notebooks, cabos, caixas de som e muito mais. Tudo em tecnologia com os melhores preços." />
-  <title>melkTec — Tecnologia de A a Z</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="melkTec — Monitores, computadores, notebooks, cabos, caixas de som e muito mais. Tudo em tecnologia com os melhores preços." />
+    <title>melkTec — Tecnologia de A a Z</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="container header-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">🥛</span>
-        <span class="logo-text">melk<strong>Tec</strong></span>
-      </a>
-
-      <nav class="nav" id="nav">
-        <a href="#produtos" class="nav-link">Produtos</a>
-        <a href="#categorias" class="nav-link">Categorias</a>
-        <a href="#sobre" class="nav-link">Sobre</a>
-        <a href="#contato" class="nav-link">Contato</a>
-      </nav>
-
-      <div class="header-actions">
-        <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-        <button class="menu-btn" id="menuBtn" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <!-- ===== ANNOUNCEMENT BAR ===== -->
+    <div class="announce-bar">
+        <div class="container announce-inner">
+            <span>🚚 Frete GRÁTIS acima de R$ 299</span>
+            <span class="announce-divider">•</span>
+            <span>💳 Parcele em até 12x sem juros</span>
+            <span class="announce-divider">•</span>
+            <span>🔒 Compra 100% segura</span>
+        </div>
     </div>
-  </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <span class="badge">🔥 Semana da Tecnologia — até 40% OFF</span>
-        <h1>Tudo em tecnologia, <span class="gradient-text">num só lugar</span></h1>
-        <p>Monitores, computadores, notebooks, cabos, caixas de som e periféricos com entrega rápida para todo o Brasil.</p>
-        <div class="hero-actions">
-          <a href="#produtos" class="btn btn-primary">Ver produtos</a>
-          <a href="#categorias" class="btn btn-ghost">Explorar categorias</a>
-        </div>
-        <div class="hero-stats">
-          <div><strong>+8.400</strong><span>Clientes</span></div>
-          <div><strong>4.9★</strong><span>Avaliação</span></div>
-          <div><strong>24h</strong><span>Envio</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="glow"></div>
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="screen-bar"></div>
-            <div class="screen-content">
-              <div class="screen-item"></div>
-              <div class="screen-item"></div>
-              <div class="screen-item"></div>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">🥛</span>
+                <span class="logo-text">melk<strong>Tec</strong></span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <a href="#produtos" class="nav-link">Produtos</a>
+                <a href="#categorias" class="nav-link">Categorias</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn search-btn" aria-label="Buscar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+
+                <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+
+                <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ===== CATEGORIAS ===== -->
-  <section class="categories" id="categorias">
-    <div class="container">
-      <div class="section-head">
-        <h2>Categorias</h2>
-        <p>Encontre o que você procura</p>
-      </div>
-      <div class="category-grid" id="categoryGrid"></div>
-    </div>
-  </section>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <!-- Formas flutuantes decorativas -->
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
 
-  <!-- ===== PRODUTOS ===== -->
-  <section class="products" id="produtos">
-    <div class="container">
-      <div class="section-head">
-        <h2>Produtos em destaque</h2>
-        <p>Os mais vendidos da semana na melkTec</p>
-      </div>
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <span class="badge">
+                    <span class="badge-dot"></span>
+                    Semana da Tecnologia — até 40% OFF
+                </span>
 
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="monitor">Monitores</button>
-        <button class="filter-btn" data-filter="computador">Computadores</button>
-        <button class="filter-btn" data-filter="notebook">Notebooks</button>
-        <button class="filter-btn" data-filter="audio">Áudio</button>
-        <button class="filter-btn" data-filter="cabo">Cabos</button>
-        <button class="filter-btn" data-filter="periferico">Periféricos</button>
-      </div>
+                <h1>
+                    Tudo em tecnologia,<br>
+                    <span class="gradient-text">num só lugar</span>
+                </h1>
 
-      <div class="product-grid" id="productGrid"></div>
-    </div>
-  </section>
+                <p class="hero-desc">
+                    Monitores, computadores, notebooks, cabos, caixas de som e periféricos com entrega rápida para todo o Brasil.
+                </p>
 
-  <!-- ===== SOBRE ===== -->
-  <section class="features" id="sobre">
-    <div class="container">
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🚚</div>
-          <h3>Entrega Rápida</h3>
-          <p>Enviamos em até 24h para todo o Brasil.</p>
+                <div class="hero-actions">
+                    <a href="#produtos" class="btn btn-primary btn-lg">
+                        Ver produtos
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#categorias" class="btn btn-ghost btn-lg">
+                        Explorar categorias
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>+8.400</strong>
+                        <span>Clientes felizes</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <strong>4.9★</strong>
+                        <span>Avaliação média</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <strong>24h</strong>
+                        <span>Envio rápido</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="glow"></div>
+
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-bar"></div>
+                        <div class="screen-header">
+                            <span>melk<strong>Tec</strong></span>
+                            <span class="screen-cart">🛒</span>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-item">
+                                <div class="screen-icon">🖥️</div>
+                                <div class="screen-info">
+                                    <span class="screen-title">Monitor Gamer</span>
+                                    <span class="screen-price">R$ 1.299</span>
+                                </div>
+                            </div>
+                            <div class="screen-item">
+                                <div class="screen-icon">🎧</div>
+                                <div class="screen-info">
+                                    <span class="screen-title">Headset 7.1</span>
+                                    <span class="screen-price">R$ 349</span>
+                                </div>
+                            </div>
+                            <div class="screen-item">
+                                <div class="screen-icon">🔊</div>
+                                <div class="screen-info">
+                                    <span class="screen-title">Caixa Bluetooth</span>
+                                    <span class="screen-price">R$ 399</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-1">
+                    <span class="fc-icon">⚡</span>
+                    <div>
+                        <strong>Frete Grátis</strong>
+                        <small>acima de R$ 299</small>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-2">
+                    <span class="fc-icon">💳</span>
+                    <div>
+                        <strong>12x sem juros</strong>
+                        <small>no cartão</small>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Compra Segura</h3>
-          <p>Pagamento protegido via Pix, cartão ou boleto.</p>
+    </section>
+
+    <!-- ===== FEATURES BAR ===== -->
+    <section class="features-bar">
+        <div class="container">
+            <div class="features-bar-inner">
+                <div class="feature-mini">
+                    <div class="feature-mini-icon">🚚</div>
+                    <div>
+                        <strong>Entrega Rápida</strong>
+                        <span>Em até 24h</span>
+                    </div>
+                </div>
+                <div class="feature-mini">
+                    <div class="feature-mini-icon">🔒</div>
+                    <div>
+                        <strong>Compra Segura</strong>
+                        <span>Pagamento protegido</span>
+                    </div>
+                </div>
+                <div class="feature-mini">
+                    <div class="feature-mini-icon">💳</div>
+                    <div>
+                        <strong>Parcele em 12x</strong>
+                        <span>Sem complicação</span>
+                    </div>
+                </div>
+                <div class="feature-mini">
+                    <div class="feature-mini-icon">↩️</div>
+                    <div>
+                        <strong>Troca Garantida</strong>
+                        <span>7 dias para trocar</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h3>Parcele em até 12x</h3>
-          <p>Sem complicação, direto no checkout.</p>
+    </section>
+
+    <!-- ===== CATEGORIAS ===== -->
+    <section class="categories" id="categorias">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">EXPLORE</span>
+                <h2>Categorias</h2>
+                <p>Encontre o que você procura</p>
+            </div>
+            <div class="category-grid" id="categoryGrid"></div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">↩️</div>
-          <h3>Troca Garantida</h3>
-          <p>7 dias para trocar ou devolver.</p>
+    </section>
+
+    <!-- ===== PRODUTOS ===== -->
+    <section class="products" id="produtos">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">DESTAQUES</span>
+                <h2>Produtos em destaque</h2>
+                <p>Os mais vendidos da semana na melkTec</p>
+            </div>
+
+            <div class="filters" id="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="monitor">Monitores</button>
+                <button class="filter-btn" data-filter="computador">Computadores</button>
+                <button class="filter-btn" data-filter="notebook">Notebooks</button>
+                <button class="filter-btn" data-filter="audio">Áudio</button>
+                <button class="filter-btn" data-filter="cabo">Cabos</button>
+                <button class="filter-btn" data-filter="periferico">Periféricos</button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
         </div>
-      </div>
+    </section>
+
+    <!-- ===== BANNER CTA ===== -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-inner">
+                <div class="promo-content">
+                    <span class="promo-badge">⚡ OFERTA ESPECIAL</span>
+                    <h3>Ganhe <span class="gradient-text">10% OFF</span> na primeira compra</h3>
+                    <p>Use o cupom <strong>MELK10</strong> no checkout e aproveite!</p>
+                </div>
+                <a href="#produtos" class="btn btn-primary btn-lg">Aproveitar agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section class="features" id="sobre">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">POR QUE ESCOLHER</span>
+                <h2>Nossos diferenciais</h2>
+                <p>Compre com quem entende de tecnologia</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Entrega Rápida</h3>
+                    <p>Enviamos em até 24h para todo o Brasil.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Compra Segura</h3>
+                    <p>Pagamento protegido via Pix, cartão ou boleto.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Parcele em até 12x</h3>
+                    <p>Sem complicação, direto no checkout.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↩️</div>
+                    <h3>Troca Garantida</h3>
+                    <p>7 dias para trocar ou devolver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag">AVALIAÇÕES</span>
+                <h2>O que nossos clientes dizem</h2>
+                <p>Mais de 8.400 clientes satisfeitos</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"Comprei um monitor e chegou super rápido. Produto original e bem embalado. Recomendo demais!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">R</div>
+                        <div>
+                            <strong>Rafael Souza</strong>
+                            <small>Comprou um Monitor Gamer</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"Site fácil de usar, pagamento pelo Pix instantâneo. Virei cliente fiel!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <strong>Mariana Lima</strong>
+                            <small>Comprou um Notebook</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"Preço bom e atendimento pelo WhatsApp excelente. Tive dúvida e me responderam na hora."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">C</div>
+                        <div>
+                            <strong>Carlos Eduardo</strong>
+                            <small>Comprou um Headset</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-content">
+                    <span class="section-tag">FALE CONOSCO</span>
+                    <h2>Alguma dúvida?</h2>
+                    <p>Chama no WhatsApp que a gente responde rapidinho. Atendimento humano e sem robô!</p>
+                    <a href="https://wa.me/5511999999999" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Falar no WhatsApp
+                    </a>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <small>Email</small>
+                            <strong>contato@melktec.com</strong>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <small>Telefone</small>
+                            <strong>(11) 99999-9999</strong>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <small>Horário</small>
+                            <strong>Seg a Sáb, 9h às 19h</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo footer-logo">
+                        <span class="logo-icon">🥛</span>
+                        <span class="logo-text">melk<strong>Tec</strong></span>
+                    </a>
+                    <p class="footer-desc">
+                        Tecnologia de qualidade com os melhores preços do mercado. Entrega rápida e atendimento humano.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Facebook">👍</a>
+                        <a href="#" aria-label="WhatsApp">💬</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Loja</h4>
+                    <a href="#produtos">Produtos</a>
+                    <a href="#categorias">Categorias</a>
+                    <a href="#sobre">Sobre nós</a>
+                    <a href="#contato">Contato</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Ajuda</h4>
+                    <a href="#">Formas de pagamento</a>
+                    <a href="#">Frete e entrega</a>
+                    <a href="#">Trocas e devoluções</a>
+                    <a href="#">Fale conosco</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <p>📧 contato@melktec.com</p>
+                    <p>📞 (11) 99999-9999</p>
+                    <p>📍 São Paulo, SP</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 melkTec. Todos os direitos reservados.</p>
+                <div class="footer-payments">
+                    <span>💠 Pix</span>
+                    <span>💳 Cartão</span>
+                    <span>🧾 Boleto</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== CART DRAWER ===== -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="cart-header">
+            <div>
+                <h3>Seu Carrinho</h3>
+                <small id="cartHeaderCount">0 itens</small>
+            </div>
+            <button class="close-btn" id="closeCart" aria-label="Fechar">✕</button>
+        </div>
+
+        <div class="cart-shipping-bar" id="cartShippingBar">
+            <div class="shipping-text" id="shippingText">Adicione mais R$ 299 para frete grátis</div>
+            <div class="shipping-progress">
+                <div class="shipping-progress-fill" id="shippingProgress"></div>
+            </div>
+        </div>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <strong id="cartTotal">R$ 0,00</strong>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">
+                Finalizar Compra
+            </button>
+            <button class="btn btn-ghost btn-block" id="continueShopping" type="button" onclick="document.getElementById('closeCart').click()">
+                Continuar comprando
+            </button>
+        </div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="modal" id="checkoutModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" id="closeCheckout" aria-label="Fechar">✕</button>
+
+            <div class="modal-header">
+                <div class="modal-step-icon">💳</div>
+                <h3>Finalizar Compra</h3>
+                <p class="modal-sub">Escolha a forma de pagamento</p>
+            </div>
+
+            <div class="payment-options">
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="pix" checked />
+                    <span class="payment-icon">💠</span>
+                    <div class="payment-info">
+                        <strong>Pix</strong>
+                        <small>0,99% de taxa • Aprovação imediata</small>
+                    </div>
+                    <span class="payment-check">✓</span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="card" />
+                    <span class="payment-icon">💳</span>
+                    <div class="payment-info">
+                        <strong>Cartão de Crédito</strong>
+                        <small>3,99% de taxa • Até 12x</small>
+                    </div>
+                    <span class="payment-check">✓</span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="payment" value="boleto" />
+                    <span class="payment-icon">🧾</span>
+                    <div class="payment-info">
+                        <strong>Boleto</strong>
+                        <small>R$ 3,49 de taxa • 1 a 2 dias úteis</small>
+                    </div>
+                    <span class="payment-check">✓</span>
+                </label>
+            </div>
+
+            <div class="checkout-summary" id="checkoutSummary"></div>
+
+            <button class="btn btn-primary btn-block btn-lg" id="confirmPayment">
+                Confirmar Pedido
+            </button>
+
+            <div class="checkout-security">
+                <span>🔒 Pagamento seguro</span>
+                <span>•</span>
+                <span>Processado pelo Mercado Pago</span>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- ===== CONTATO ===== -->
-  <section class="contact" id="contato">
-    <div class="container contact-inner">
-      <div>
-        <h2>Fale com a melkTec</h2>
-        <p>Dúvidas? Chama no WhatsApp que a gente responde rapidinho.</p>
-        <a href="https://wa.me/5511999999999" class="btn btn-primary" target="_blank" rel="noopener">💬 WhatsApp</a>
-      </div>
-      <div class="contact-info">
-        <p><strong>Email:</strong> contato@melktec.com</p>
-        <p><strong>Telefone:</strong> (11) 99999-9999</p>
-        <p><strong>Horário:</strong> Seg a Sáb, 9h às 19h</p>
-      </div>
-    </div>
-  </section>
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© 2026 melkTec. Todos os direitos reservados.</p>
-      <p>Feito com 💛 para demonstração.</p>
-    </div>
-  </footer>
-
-  <!-- ===== CART DRAWER ===== -->
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-header">
-      <h3>Seu Carrinho</h3>
-      <button class="close-btn" id="closeCart" aria-label="Fechar">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total</span>
-        <strong id="cartTotal">R$ 0,00</strong>
-      </div>
-      <button class="btn btn-primary btn-block" id="checkoutBtn">Finalizar Compra</button>
-    </div>
-  </aside>
-  <div class="overlay" id="overlay"></div>
-
-  <!-- ===== CHECKOUT MODAL ===== -->
-  <div class="modal" id="checkoutModal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="close-btn" id="closeCheckout" aria-label="Fechar">✕</button>
-      <h3>Finalizar Compra</h3>
-      <p class="modal-sub">Escolha a forma de pagamento</p>
-
-      <div class="payment-options">
-        <label class="payment-option">
-          <input type="radio" name="payment" value="pix" checked />
-          <span class="payment-icon">💠</span>
-          <div>
-            <strong>Pix</strong>
-            <small>0,99% de taxa • Aprovação imediata</small>
-          </div>
-        </label>
-        <label class="payment-option">
-          <input type="radio" name="payment" value="card" />
-          <span class="payment-icon">💳</span>
-          <div>
-            <strong>Cartão de Crédito</strong>
-            <small>3,99% de taxa • Até 12x</small>
-          </div>
-        </label>
-        <label class="payment-option">
-          <input type="radio" name="payment" value="boleto" />
-          <span class="payment-icon">🧾</span>
-          <div>
-            <strong>Boleto</strong>
-            <small>R$ 3,49 de taxa • 1 a 2 dias úteis</small>
-          </div>
-        </label>
-      </div>
-
-      <div class="checkout-summary" id="checkoutSummary"></div>
-
-      <button class="btn btn-primary btn-block" id="confirmPayment">Confirmar Pedido</button>
-    </div>
-  </div>
-
-  <!-- ===== TOAST ===== -->
-  <div class="toast" id="toast"></div>
-
-  <script src="index.js?v=2"></script>
+    <script src="index.js?v=2"></script>
+</body>
 </html>

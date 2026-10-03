@@ -12,24 +12,22 @@
 </head>
 <body>
 
-    <!-- ===== ANNOUNCEMENT BAR ===== -->
     <div class="announce-bar">
         <div class="container announce-inner">
-            <span>🚚 Frete GRÁTIS acima de R$ 299</span>
+            <span>🚚 <strong>Frete GRÁTIS</strong> acima de R$ 299</span>
             <span class="announce-divider">•</span>
-            <span>💳 Parcele em até 12x sem juros</span>
+            <span>💳 Parcele em até <strong>12x sem juros</strong></span>
             <span class="announce-divider">•</span>
-            <span>🔒 Compra 100% segura</span>
+            <span>🔒 Compra <strong>100% segura</strong></span>
         </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container header-inner">
             <a href="#" class="logo">
-                <span class="logo-icon">🥛</span>
-                <span class="logo-text">melk<strong>Tec</strong></span>
-            </a>
+    <span class="logo-icon">🖥️</span>
+    <span class="logo-text">melk<strong>Tec</strong></span>
+</a>
 
             <nav class="nav" id="nav">
                 <a href="#produtos" class="nav-link">Produtos</a>
@@ -39,13 +37,6 @@
             </nav>
 
             <div class="header-actions">
-                <button class="icon-btn search-btn" aria-label="Buscar">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-
                 <button class="cart-btn" id="cartBtn" aria-label="Abrir carrinho">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -54,7 +45,6 @@
                     </svg>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-
                 <button class="menu-btn" id="menuBtn" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -62,12 +52,10 @@
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
     <section class="hero">
-        <!-- Formas flutuantes decorativas -->
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="hero-shape hero-shape-3"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-grid"></div>
 
         <div class="container hero-inner">
             <div class="hero-content">
@@ -77,8 +65,8 @@
                 </span>
 
                 <h1>
-                    Tudo em tecnologia,<br>
-                    <span class="gradient-text">num só lugar</span>
+                    Tecnologia que <br>
+                    <span class="gradient-text">cabe no seu bolso</span>
                 </h1>
 
                 <p class="hero-desc">
@@ -117,38 +105,34 @@
             </div>
 
             <div class="hero-visual">
-                <div class="glow"></div>
-
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="screen-bar"></div>
-                        <div class="screen-header">
-                            <span>melk<strong>Tec</strong></span>
-                            <span class="screen-cart">🛒</span>
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <span>Destaques da semana</span>
+                        <span class="hero-card-dot"></span>
+                    </div>
+                    <div class="hero-card-item">
+                        <div class="hero-card-icon">🖥️</div>
+                        <div class="hero-card-info">
+                            <span class="hero-card-name">Monitor Gamer 27"</span>
+                            <span class="hero-card-price">R$ 1.299</span>
                         </div>
-                        <div class="screen-content">
-                            <div class="screen-item">
-                                <div class="screen-icon">🖥️</div>
-                                <div class="screen-info">
-                                    <span class="screen-title">Monitor Gamer</span>
-                                    <span class="screen-price">R$ 1.299</span>
-                                </div>
-                            </div>
-                            <div class="screen-item">
-                                <div class="screen-icon">🎧</div>
-                                <div class="screen-info">
-                                    <span class="screen-title">Headset 7.1</span>
-                                    <span class="screen-price">R$ 349</span>
-                                </div>
-                            </div>
-                            <div class="screen-item">
-                                <div class="screen-icon">🔊</div>
-                                <div class="screen-info">
-                                    <span class="screen-title">Caixa Bluetooth</span>
-                                    <span class="screen-price">R$ 399</span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="hero-card-item">
+                        <div class="hero-card-icon">🎧</div>
+                        <div class="hero-card-info">
+                            <span class="hero-card-name">Headset Gamer 7.1</span>
+                            <span class="hero-card-price">R$ 349</span>
                         </div>
+                    </div>
+                    <div class="hero-card-item">
+                        <div class="hero-card-icon">🔊</div>
+                        <div class="hero-card-info">
+                            <span class="hero-card-name">Caixa Bluetooth 40W</span>
+                            <span class="hero-card-price">R$ 399</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-footer">
+                        <span>+ 21 produtos disponíveis</span>
                     </div>
                 </div>
 
@@ -171,7 +155,6 @@
         </div>
     </section>
 
-    <!-- ===== FEATURES BAR ===== -->
     <section class="features-bar">
         <div class="container">
             <div class="features-bar-inner">
@@ -207,7 +190,6 @@
         </div>
     </section>
 
-    <!-- ===== CATEGORIAS ===== -->
     <section class="categories" id="categorias">
         <div class="container">
             <div class="section-head">
@@ -219,7 +201,6 @@
         </div>
     </section>
 
-    <!-- ===== PRODUTOS ===== -->
     <section class="products" id="produtos">
         <div class="container">
             <div class="section-head">
@@ -242,7 +223,6 @@
         </div>
     </section>
 
-    <!-- ===== BANNER CTA ===== -->
     <section class="promo-banner">
         <div class="container">
             <div class="promo-inner">
@@ -256,7 +236,6 @@
         </div>
     </section>
 
-    <!-- ===== SOBRE ===== -->
     <section class="features" id="sobre">
         <div class="container">
             <div class="section-head">
@@ -289,7 +268,6 @@
         </div>
     </section>
 
-    <!-- ===== DEPOIMENTOS ===== -->
     <section class="testimonials">
         <div class="container">
             <div class="section-head">
@@ -335,7 +313,6 @@
         </div>
     </section>
 
-    <!-- ===== CONTATO ===== -->
     <section class="contact" id="contato">
         <div class="container">
             <div class="contact-card">
@@ -377,7 +354,6 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -431,98 +407,61 @@
         </div>
     </footer>
 
-    <!-- ===== CART DRAWER ===== -->
     <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
         <div class="cart-header">
-            <div>
-                <h3>Seu Carrinho</h3>
-                <small id="cartHeaderCount">0 itens</small>
-            </div>
+            <h3>Seu Carrinho</h3>
             <button class="close-btn" id="closeCart" aria-label="Fechar">✕</button>
         </div>
-
-        <div class="cart-shipping-bar" id="cartShippingBar">
-            <div class="shipping-text" id="shippingText">Adicione mais R$ 299 para frete grátis</div>
-            <div class="shipping-progress">
-                <div class="shipping-progress-fill" id="shippingProgress"></div>
-            </div>
-        </div>
-
         <div class="cart-items" id="cartItems"></div>
-
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total</span>
                 <strong id="cartTotal">R$ 0,00</strong>
             </div>
-            <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">
-                Finalizar Compra
-            </button>
-            <button class="btn btn-ghost btn-block" id="continueShopping" type="button" onclick="document.getElementById('closeCart').click()">
-                Continuar comprando
-            </button>
+            <button class="btn btn-primary btn-block btn-lg" id="checkoutBtn">Finalizar Compra</button>
         </div>
     </aside>
     <div class="overlay" id="overlay"></div>
 
-    <!-- ===== CHECKOUT MODAL ===== -->
     <div class="modal" id="checkoutModal" aria-hidden="true">
         <div class="modal-content">
             <button class="close-btn" id="closeCheckout" aria-label="Fechar">✕</button>
-
-            <div class="modal-header">
-                <div class="modal-step-icon">💳</div>
-                <h3>Finalizar Compra</h3>
-                <p class="modal-sub">Escolha a forma de pagamento</p>
-            </div>
+            <h3>Finalizar Compra</h3>
+            <p class="modal-sub">Escolha a forma de pagamento</p>
 
             <div class="payment-options">
                 <label class="payment-option">
                     <input type="radio" name="payment" value="pix" checked />
                     <span class="payment-icon">💠</span>
-                    <div class="payment-info">
+                    <div>
                         <strong>Pix</strong>
                         <small>0,99% de taxa • Aprovação imediata</small>
                     </div>
-                    <span class="payment-check">✓</span>
                 </label>
-
                 <label class="payment-option">
                     <input type="radio" name="payment" value="card" />
                     <span class="payment-icon">💳</span>
-                    <div class="payment-info">
+                    <div>
                         <strong>Cartão de Crédito</strong>
                         <small>3,99% de taxa • Até 12x</small>
                     </div>
-                    <span class="payment-check">✓</span>
                 </label>
-
                 <label class="payment-option">
                     <input type="radio" name="payment" value="boleto" />
                     <span class="payment-icon">🧾</span>
-                    <div class="payment-info">
+                    <div>
                         <strong>Boleto</strong>
                         <small>R$ 3,49 de taxa • 1 a 2 dias úteis</small>
                     </div>
-                    <span class="payment-check">✓</span>
                 </label>
             </div>
 
             <div class="checkout-summary" id="checkoutSummary"></div>
 
-            <button class="btn btn-primary btn-block btn-lg" id="confirmPayment">
-                Confirmar Pedido
-            </button>
-
-            <div class="checkout-security">
-                <span>🔒 Pagamento seguro</span>
-                <span>•</span>
-                <span>Processado pelo Mercado Pago</span>
-            </div>
+            <button class="btn btn-primary btn-block btn-lg" id="confirmPayment">Confirmar Pedido</button>
         </div>
     </div>
 
-    <!-- ===== TOAST ===== -->
     <div class="toast" id="toast"></div>
 
     <script src="index.js?v=2"></script>

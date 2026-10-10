@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin — MELKOTEC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           ADMIN — MELKOTEC
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #f8fafc;
+            --surface: #fff;
+            --surface-2: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-soft: #334155;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --accent: #0066cc;
+            --accent-2: #0052a3;
+            --accent-soft: #e6f2ff;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 12px rgba(15,23,42,.08);
+            --shadow-md: 0 8px 24px rgba(15,23,42,.1);
+            --shadow-lg: 0 16px 40px rgba(15,23,42,.15);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --transition: .25s cubic-bezier(.4,0,.2,1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -.02em; }
+
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+        /* ============ LOGIN ============ */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #0066cc 0%, #1e90ff 100%);
+        }
+
+        .login-box {
+            background: #fff;
+            border-radius: 20px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.3);
+            border-top: 5px solid var(--accent);
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .login-logo svg { width: 40px; height: 40px; }
+
+        .login-logo-text strong { color: var(--accent); }
+
+        .login-box h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 16px 0 8px;
+        }
+
+        .login-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .92rem;
+            margin-bottom: 28px;
+        }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: .88rem;
+            margin-bottom: 6px;
+            color: var(--text-soft);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            color: var(--text);
+            background: #fff;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0,102,204,.15);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: .95rem;
+            transition: var(--transition);
+            white-space: nowrap;
+            border: 1px solid transparent;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0,102,204,.25);
+        }
+        .btn-primary:hover {
+            background: var(--accent-2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,102,204,.4);
+        }
+
+        .btn-ghost {
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text-soft);
+        }
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+        .btn-danger:hover { background: #dc2626; }
+
+        .btn-block { width: 100%; }
+        .btn-sm { padding: 8px 14px; font-size: .82rem; border-radius: 8px; }
+
+        .login-error {
+            background: #fef2f2;
+            color: var(--danger);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: .88rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--danger);
+            display: none;
+        }
+        .login-error.show { display: block; }
+
+        /* ============ HEADER ADMIN ============ */
+        .admin-header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 8px rgba(15,23,42,.04);
+        }
+
+        .admin-header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .admin-brand svg { width: 32px; height: 32px; }
+        .admin-brand strong { color: var(--accent); }
+
+        .admin-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .admin-email {
+            color: var(--text-muted);
+            font-size: .85rem;
+            display: none;
+        }
+
+        @media (min-width: 700px) {
+            .admin-email { display: inline; }
+        }
+
+        /* ============ TABS ============ */
+        .admin-tabs {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 73px;
+            z-index: 40;
+            overflow-x: auto;
+        }
+
+        .admin-tabs-inner {
+            display: flex;
+            gap: 4px;
+            padding: 0 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .admin-tab {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: .92rem;
+            color: var(--text-muted);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-tab:hover { color: var(--accent); }
+        .admin-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 700;
+        }
+
+        .admin-tab-badge {
+            background: var(--danger);
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 999px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* ============ MAIN ============ */
+        .admin-main {
+            padding: 32px 0 80px;
+        }
+
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            font-size: .92rem;
+            margin-bottom: 24px;
+        }
+
+        /* ============ STATS CARDS ============ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--accent-soft);
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.green { background: #d1fae5; }
+        .stat-icon.yellow { background: #fef3c7; }
+        .stat-icon.red { background: #fee2e2; }
+
+        .stat-info strong {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .stat-info span {
+            color: var(--text-muted);
+            font-size: .82rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 600;
+        }
+
+        /* ============ TOOLBAR ============ */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 320px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 42px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: .9rem;
+            background: #fff;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9rem;
+            opacity: .6;
+        }
+
+        /* ============ PRODUCT LIST ============ */
+        .admin-product-list,
+        .admin-order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .admin-product-item,
+        .admin-order-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .admin-product-item:hover,
+        .admin-order-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .admin-product-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--surface-2);
+            flex-shrink: 0;
+        }
+
+        .admin-product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .admin-product-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .admin-product-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-product-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: .82rem;
+            color: var(--text-muted);
+        }
+
+        .admin-product-meta strong { color: var(--accent); font-weight: 700; }
+
+        .admin-product-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--surface-2);
+            display: grid;
+            place-items: center;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .icon-btn.danger:hover { background: var(--danger); }
+        .icon-btn.success:hover { background: var(--success); }
+
+        /* Status badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+        }
+
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-info { background: #dbeafe; color: #1e40af; }
+        .badge-muted { background: #f1f5f9; color: #475569; }
+
+        /* ============ MODAL ============ */
+        .admin-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,.7);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .25s;
+            backdrop-filter: blur(6px);
+        }
+
+        .admin-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .admin-modal-content {
+            background: #fff;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+            animation: modalIn .25s ease;
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .admin-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .admin-modal-header h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .close-modal {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--surface-2);
+            display: grid;
+            place-items: center;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .close-modal:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* Form rows */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        /* Images input */
+        .images-input-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .image-input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .image-input-row input {
+            flex: 1;
+        }
+
+        .image-preview {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: var(--surface-2);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .add-image-btn {
+            align-self: flex-start;
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: .85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .add-image-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            opacity: .4;
+        }
+
+        .empty-state h4 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--text-soft);
+        }
+
+        /* ============ ORDER ITEM ============ */
+        .admin-order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .admin-order-items {
+            background: var(--surface-2);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: .88rem;
+            margin-top: 10px;
+        }
+
+        .admin-order-items li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .admin-order-items li:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--accent);
+            padding-top: 8px;
+            margin-top: 4px;
+            border-top: 2px solid var(--border);
+        }
+
+        /* ============ TOAST ============ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 12px;
+            z-index: 9999;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,102,204,.4);
+            font-size: .9rem;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.error { background: var(--danger); box-shadow: 0 10px 30px rgba(239,68,68,.4); }
+        .toast.success { background: var(--success); box-shadow: 0 10px 30px rgba(16,185,129,.4); }
+
+        /* ============ RESPONSIVO ============ */
+        @media (max-width: 700px) {
+            .container { padding: 0 16px; }
+            .login-box { padding: 32px 24px; }
+            .admin-modal-content { padding: 24px 20px; }
+            .admin-product-item { flex-direction: column; align-items: stretch; }
+            .admin-product-img { width: 100%; height: 140px; }
+            .admin-product-actions { justify-content: flex-end; }
+            .admin-header-actions { gap: 6px; }
+            .admin-tab { padding: 14px 14px; font-size: .85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ TELA DE LOGIN ============ -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <div class="login-logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6 L16 6 L16 12 L10 12 L4 6 Z" fill="#0099e6"/>
+                    <path d="M4 6 L4 26 L10 26 L10 12 L4 6 Z" fill="#0099e6" opacity="0.7"/>
+                    <path d="M10 12 L16 12 L22 20 L22 12 L28 12 L28 26 L22 26 L16 18 L16 26 L10 26 L10 12 Z" fill="#33b1ff"/>
+                </svg>
+                <span class="login-logo-text">MELKO<strong>TEC</strong></span>
+            </div>
+
+            <h2>Painel Admin</h2>
+            <p class="login-sub">Acesso restrito</p>
+
+            <div class="login-error" id="loginError"></div>
+
+            <div class="form-group">
+                <label>📧 Email</label>
+                <input type="email" id="emailInput" class="form-input" placeholder="seu@email.com" autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label>🔒 Senha</label>
+                <input type="password" id="senhaInput" class="form-input" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter') fazerLogin()">
+            </div>
+
+            <button class="btn btn-primary btn-block" id="btnEntrar" onclick="fazerLogin()">
+                🔐 Entrar
+            </button>
+
+            <button class="btn btn-ghost btn-block" style="margin-top:12px;" onclick="esqueceuSenha()">
+                Esqueci minha senha
+            </button>
+        </div>
+    </div>
+
+    <!-- ============ PAINEL ============ -->
+    <div id="painelScreen" style="display:none;">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="container admin-header-inner">
+                <div class="admin-brand">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6 L16 6 L16 12 L10 12 L4 6 Z" fill="#0099e6"/>
+                        <path d="M4 6 L4 26 L10 26 L10 12 L4 6 Z" fill="#0099e6" opacity="0.7"/>
+                        <path d="M10 12 L16 12 L22 20 L22 12 L28 12 L28 26 L22 26 L16 18 L16 26 L10 26 L10 12 Z" fill="#33b1ff"/>
+                    </svg>
+                    <span>MELKO<strong>TEC</strong> · Admin</span>
+                </div>
+                <div class="admin-header-actions">
+                    <span class="admin-email" id="adminEmail">-</span>
+                    <a href="index.html" target="_blank" class="btn btn-ghost btn-sm">🌐 Ver Loja</a>
+                    <button class="btn btn-danger btn-sm" onclick="fazerLogout()">🚪 Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- TABS -->
+        <nav class="admin-tabs">
+            <div class="admin-tabs-inner">
+                <button class="admin-tab active" data-tab="dashboard" onclick="abrirTab('dashboard')">📊 Dashboard</button>
+                <button class="admin-tab" data-tab="produtos" onclick="abrirTab('produtos')">📦 Produtos</button>
+                <button class="admin-tab" data-tab="pedidos" onclick="abrirTab('pedidos')">
+                    🛒 Pedidos
+                    <span class="admin-tab-badge" id="badgePedidos" style="display:none;">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+            <div class="container">
+
+                <!-- ========== DASHBOARD ========== -->
+                <section class="admin-section active" id="tab-dashboard">
+                    <h2 class="section-title">Dashboard</h2>
+                    <p class="section-sub">Visão geral da loja</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-info">
+                                <strong id="statProdutos">0</strong>
+                                <span>Produtos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">✅</div>
+                            <div class="stat-info">
+                                <strong id="statAtivos">0</strong>
+                                <span>Ativos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon yellow">🛒</div>
+                            <div class="stat-info">
+                                <strong id="statPedidos">0</strong>
+                                <span>Pedidos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">💰</div>
+                            <div class="stat-info">
+                                <strong id="statFaturamento">R$ 0</strong>
+                                <span>Faturamento</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                        <h3 style="font-size:1.1rem;margin-bottom:12px;">🚀 Comece agora</h3>
+                        <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:16px;">
+                            Adicione produtos para que eles apareçam na loja automaticamente.
+                        </p>
+                        <button class="btn btn-primary" onclick="abrirTab('produtos');abrirModalProduto()">
+                            ➕ Adicionar primeiro produto
+                        </button>
+                    </div>
+                </section>
+
+                <!-- ========== PRODUTOS ========== -->
+                <section class="admin-section" id="tab-produtos">
+                    <h2 class="section-title">Produtos</h2>
+                    <p class="section-sub">Gerencie os produtos da sua loja</p>
+
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <input type="text" id="buscaProduto" placeholder="Buscar produto..." oninput="filtrarProdutos()">
+                        </div>
+                        <button class="btn btn-primary" onclick="abrirModalProduto()">➕ Novo produto</button>
+                    </div>
+
+                    <div class="admin-product-list" id="listaProdutos"></div>
+                </section>
+
+                <!-- ========== PEDIDOS ========== -->
+                <section class="admin-section" id="tab-pedidos">
+                    <h2 class="section-title">Pedidos</h2>
+                    <p class="section-sub">Acompanhe os pedidos da loja</p>
+
+                    <div class="admin-order-list" id="listaPedidos"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ============ MODAL PRODUTO ============ -->
+    <div class="admin-modal" id="modalProduto">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="modalProdutoTitle">Novo Produto</h3>
+                <button class="close-modal" onclick="fecharModalProduto()">✕</button>
+            </div>
+
+            <input type="hidden" id="produtoId">
+
+            <div class="form-group">
+                <label>Nome do produto *</label>
+                <input type="text" id="produtoNome" class="form-input" placeholder="Ex: Monitor Gamer 27'' 165Hz">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Categoria *</label>
+                    <select id="produtoCategoria" class="form-input">
+                        <option value="monitor">Monitores</option>
+                        <option value="computador">Computadores</option>
+                        <option value="notebook">Notebooks</option>
+                        <option value="audio">Áudio</option>
+                        <option value="cabo">Cabos</option>
+                        <option value="periferico">Periféricos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nota (1-5)</label>
+                    <input type="number" id="produtoRating" class="form-input" min="1" max="5" value="5">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Preço (R$) *</label>
+                    <input type="number" id="produtoPreco" class="form-input" step="0.01" placeholder="1299.00">
+                </div>
+                <div class="form-group">
+                    <label>Preço antigo (R$)</label>
+                    <input type="number" id="produtoOldPrice" class="form-input" step="0.01" placeholder="1699.00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Descrição curta *</label>
+                <textarea id="produtoDesc" class="form-input" placeholder="Ex: Full HD, IPS, 1ms, FreeSync"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Imagens (URLs) *</label>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">
+                    Cole URLs de imagens. A primeira será a principal.
+                </p>
+                <div class="images-input-list" id="imagesList"></div>
+                <button type="button" class="add-image-btn" onclick="adicionarImageInput()" style="margin-top:10px;">
+                    ➕ Adicionar imagem
+                </button>
+            </div>
+
+            <div class="form-group" style="display:flex;align-items:center;gap:10px;margin-top:20px;">
+                <input type="checkbox" id="produtoAtivo" checked style="width:18px;height:18px;accent-color:var(--accent);">
+                <label for="produtoAtivo" style="margin:0;cursor:pointer;">Produto ativo (visível na loja)</label>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:24px;">
+                <button class="btn btn-ghost" onclick="fecharModalProduto()" style="flex:1;">Cancelar</button>
+                <button class="btn btn-primary" onclick="salvarProduto()" style="flex:2;">💾 Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

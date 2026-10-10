@@ -27,92 +27,6 @@ let currentProduct = null;
 let currentImageIndex = 0;
 
 // ============================================
-// PRODUTOS PADRÃO (só na primeira vez)
-// ============================================
-const PRODUTOS_PADRAO = [
-    {
-        name: "Monitor Gamer 27\" 165Hz", category: "monitor",
-        price: 1299.00, oldPrice: 1699.00, desc: "Full HD, IPS, 1ms, FreeSync Premium",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80",
-            "https://images.unsplash.com/photo-1547119957-637f8679db1e?w=800&q=80",
-            "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=800&q=80"
-        ]
-    },
-    {
-        name: "Monitor 24\" Office", category: "monitor",
-        price: 749.00, oldPrice: 999.00, desc: "Full HD, 75Hz, HDMI + VGA",
-        rating: 4,
-        images: [
-            "https://images.unsplash.com/photo-1547119957-637f8679db1e?w=800&q=80",
-            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80"
-        ]
-    },
-    {
-        name: "PC Gamer melkTec RTX 4060", category: "computador",
-        price: 5499.00, oldPrice: 6499.00, desc: "Ryzen 5, 16GB, SSD 1TB, RGB",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&q=80",
-            "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80"
-        ]
-    },
-    {
-        name: "Notebook Ultra 14\"", category: "notebook",
-        price: 4299.00, oldPrice: 4999.00, desc: "i5 13ª geração, 16GB, SSD 512GB",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80",
-            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"
-        ]
-    },
-    {
-        name: "Caixa de Som Bluetooth 40W", category: "audio",
-        price: 399.00, oldPrice: 549.00, desc: "IPX7, 20h de bateria, TWS",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&q=80",
-            "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=800&q=80"
-        ]
-    },
-    {
-        name: "Headset Gamer 7.1", category: "audio",
-        price: 349.00, oldPrice: 499.00, desc: "Surround, LED, microfone destacável",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1599669454699-248893623440?w=800&q=80",
-            "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&q=80"
-        ]
-    },
-    {
-        name: "Cabo HDMI 2.1 8K — 2m", category: "cabo",
-        price: 79.00, oldPrice: 119.00, desc: "8K@60Hz, 4K@120Hz, 48Gbps",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&q=80"
-        ]
-    },
-    {
-        name: "Teclado Mecânico RGB", category: "periferico",
-        price: 379.00, oldPrice: 499.00, desc: "Switch blue, ABNT2, anti-ghosting",
-        rating: 4,
-        images: [
-            "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&q=80",
-            "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=800&q=80"
-        ]
-    },
-    {
-        name: "Mouse Gamer 12.000 DPI", category: "periferico",
-        price: 199.00, oldPrice: 279.00, desc: "7 botões, RGB, sensor óptico",
-        rating: 5,
-        images: [
-            "https://images.unsplash.com/photo-1527814050087-3793815479db?w=800&q=80"
-        ]
-    }
-];
-
-// ============================================
 // HELPERS
 // ============================================
 const $ = (sel) => document.querySelector(sel);
@@ -131,31 +45,7 @@ const toast = (msg) => {
     t._timer = setTimeout(() => t.classList.remove("show"), 2200);
 };
 
-// ============================================
-// CARREGAR PRODUTOS DO FIREBASE
-// ============================================
-async function carregarProdutos() {
-    try {
-        const snap = await db.ref('produtos').once('value');
-
-        // Primeira vez: popula com os padrão
-        if (!snap.exists()) {
-            console.log('📦 Populando Firebase com produtos padrão...');
-            for (const p of PRODUTOS_PADRAO) {
-                await db.ref('produtos').push({
-                    ...p,
-                    ativo: true,
-                    criadoEm: Date.now()
-                });
-            }
-            return; // O listener abaixo vai atualizar
-        }
-    } catch (err) {
-        console.error('Erro ao carregar produtos:', err);
-    }
-}
-
-// Listener em tempo real
+// Listener em tempo real dos produtos
 db.ref('produtos').on('value', (snap) => {
     PRODUCTS = [];
     snap.forEach(child => {
@@ -250,16 +140,13 @@ function renderProducts(filter = "all") {
         `;
     }).join("");
 
-    // Click no card abre modal
     $$(".product-card").forEach(card => {
         card.addEventListener("click", (e) => {
             if (e.target.closest(".add-btn")) return;
-            const id = card.dataset.productId;
-            openProductModal(id);
+            openProductModal(card.dataset.productId);
         });
     });
 
-    // Botão +
     $$(".add-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -474,7 +361,6 @@ async function confirmOrder() {
     });
 
     try {
-        // Salva o pedido no Firebase PRIMEIRO (para o admin ver)
         const totalPedido = items.reduce((s, i) => s + i.price * i.qty, 0);
         let pedidoId = null;
         try {
@@ -492,7 +378,6 @@ async function confirmOrder() {
             console.warn('Erro ao salvar pedido:', e);
         }
 
-        // Chama o Worker
         const response = await fetch(
             "https://melktec-worker.melktec-kasao.workers.dev",
             {
@@ -508,7 +393,6 @@ async function confirmOrder() {
             throw new Error(data.error || "Erro ao processar pagamento");
         }
 
-        // Atualiza o pedido com o order_id do MP
         if (pedidoId && (data.order_id || data.id)) {
             try {
                 await db.ref('pedidos/' + pedidoId + '/orderId').set(data.order_id || data.id);
@@ -552,7 +436,6 @@ function bindEvents() {
         if (e.target.id === "checkoutModal") e.currentTarget.classList.remove("active");
     });
 
-    // Modal produto
     $("#closeProductModal").addEventListener("click", closeProductModal);
     $("#productModal").addEventListener("click", (e) => {
         if (e.target.id === "productModal") closeProductModal();
@@ -583,7 +466,6 @@ function init() {
     renderCategories();
     renderCart();
     bindEvents();
-    carregarProdutos();
 }
 
 document.addEventListener("DOMContentLoaded", init);

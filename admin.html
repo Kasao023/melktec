@@ -8,9 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ============================================
-           ADMIN — MELKOTEC
-           ============================================ */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -21,7 +18,6 @@
             --text: #0f172a;
             --text-soft: #334155;
             --text-muted: #64748b;
-            --text-light: #94a3b8;
             --accent: #0066cc;
             --accent-2: #0052a3;
             --accent-soft: #e6f2ff;
@@ -29,10 +25,6 @@
             --danger: #ef4444;
             --warning: #f59e0b;
             --shadow: 0 4px 12px rgba(15,23,42,.08);
-            --shadow-md: 0 8px 24px rgba(15,23,42,.1);
-            --shadow-lg: 0 16px 40px rgba(15,23,42,.15);
-            --radius: 14px;
-            --radius-sm: 10px;
             --transition: .25s cubic-bezier(.4,0,.2,1);
         }
 
@@ -86,7 +78,6 @@
         }
 
         .login-logo svg { width: 40px; height: 40px; }
-
         .login-logo-text strong { color: var(--accent); }
 
         .login-box h2 {
@@ -282,10 +273,7 @@
         }
 
         /* ============ MAIN ============ */
-        .admin-main {
-            padding: 32px 0 80px;
-        }
-
+        .admin-main { padding: 32px 0 80px; }
         .admin-section { display: none; }
         .admin-section.active { display: block; }
 
@@ -293,7 +281,6 @@
             font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 6px;
-            color: var(--text);
         }
 
         .section-sub {
@@ -302,7 +289,7 @@
             margin-bottom: 24px;
         }
 
-        /* ============ STATS CARDS ============ */
+        /* ============ STATS ============ */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -313,7 +300,7 @@
         .stat-card {
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: 14px;
             padding: 20px;
             display: flex;
             align-items: center;
@@ -340,14 +327,12 @@
 
         .stat-icon.green { background: #d1fae5; }
         .stat-icon.yellow { background: #fef3c7; }
-        .stat-icon.red { background: #fee2e2; }
 
         .stat-info strong {
             display: block;
             font-size: 1.6rem;
             font-weight: 800;
             font-family: 'Space Grotesk', sans-serif;
-            color: var(--text);
             line-height: 1.1;
         }
 
@@ -383,7 +368,6 @@
             font-family: inherit;
             font-size: .9rem;
             background: #fff;
-            transition: var(--transition);
         }
 
         .search-box input:focus {
@@ -413,7 +397,7 @@
         .admin-order-item {
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: 14px;
             padding: 16px;
             display: flex;
             align-items: center;
@@ -442,10 +426,7 @@
             object-fit: cover;
         }
 
-        .admin-product-info {
-            flex: 1;
-            min-width: 0;
-        }
+        .admin-product-info { flex: 1; min-width: 0; }
 
         .admin-product-name {
             font-weight: 700;
@@ -466,11 +447,7 @@
 
         .admin-product-meta strong { color: var(--accent); font-weight: 700; }
 
-        .admin-product-actions {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-        }
+        .admin-product-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
         .icon-btn {
             width: 38px;
@@ -492,7 +469,6 @@
         .icon-btn.danger:hover { background: var(--danger); }
         .icon-btn.success:hover { background: var(--success); }
 
-        /* Status badges */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -527,10 +503,7 @@
             backdrop-filter: blur(6px);
         }
 
-        .admin-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .admin-modal.active { opacity: 1; visibility: visible; }
 
         .admin-modal-content {
             background: #fff;
@@ -556,10 +529,7 @@
             margin-bottom: 24px;
         }
 
-        .admin-modal-header h3 {
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
+        .admin-modal-header h3 { font-size: 1.3rem; font-weight: 800; }
 
         .close-modal {
             width: 36px;
@@ -572,12 +542,8 @@
             font-size: 1rem;
         }
 
-        .close-modal:hover {
-            background: var(--danger);
-            color: #fff;
-        }
+        .close-modal:hover { background: var(--danger); color: #fff; }
 
-        /* Form rows */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -594,43 +560,110 @@
             font-family: inherit;
         }
 
-        /* Images input */
+        /* ============ IMAGENS — COM UPLOAD ============ */
         .images-input-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .image-input-row {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
-        }
-
-        .image-input-row input {
-            flex: 1;
+            background: var(--surface-2);
+            border-radius: 10px;
+            padding: 10px;
         }
 
         .image-preview {
-            width: 44px;
-            height: 44px;
+            width: 56px;
+            height: 56px;
             border-radius: 8px;
-            background: var(--surface-2);
+            background: #fff;
             overflow: hidden;
             flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
         }
 
-        .image-preview img {
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+        .image-actions { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+        .image-upload-btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: .82rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+            cursor: pointer;
+            align-self: flex-start;
+            border: none;
+        }
+
+        .image-upload-btn:hover { background: var(--accent-2); }
+
+        .image-progress {
             width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+            margin-top: 4px;
+        }
+
+        .image-progress.active { display: block; }
+
+        .image-progress-bar {
             height: 100%;
-            object-fit: cover;
+            background: var(--accent);
+            width: 0%;
+            transition: width .3s;
+        }
+
+        .image-url-toggle {
+            font-size: .75rem;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+            background: none;
+            border: none;
+            padding: 0;
+            align-self: flex-start;
+            text-decoration: underline;
+        }
+
+        .image-url-field {
+            display: none;
+            margin-top: 4px;
+        }
+
+        .image-url-field.active { display: block; }
+
+        .image-url-field input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: .78rem;
+            font-family: inherit;
         }
 
         .add-image-btn {
             align-self: flex-start;
             background: var(--accent-soft);
             color: var(--accent);
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: 8px;
             font-size: .85rem;
             font-weight: 700;
@@ -638,34 +671,23 @@
             align-items: center;
             gap: 6px;
             transition: var(--transition);
+            border: none;
         }
 
-        .add-image-btn:hover {
-            background: var(--accent);
-            color: #fff;
-        }
+        .add-image-btn:hover { background: var(--accent); color: #fff; }
 
-        /* Empty state */
+        /* ============ EMPTY STATE ============ */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             background: #fff;
             border: 2px dashed var(--border);
-            border-radius: var(--radius);
+            border-radius: 14px;
             color: var(--text-muted);
         }
 
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 12px;
-            opacity: .4;
-        }
-
-        .empty-state h4 {
-            font-size: 1.1rem;
-            margin-bottom: 6px;
-            color: var(--text-soft);
-        }
+        .empty-state-icon { font-size: 3rem; margin-bottom: 12px; opacity: .4; }
+        .empty-state h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text-soft); }
 
         /* ============ ORDER ITEM ============ */
         .admin-order-header {
@@ -780,7 +802,6 @@
     <!-- ============ PAINEL ============ -->
     <div id="painelScreen" style="display:none;">
 
-        <!-- HEADER -->
         <header class="admin-header">
             <div class="container admin-header-inner">
                 <div class="admin-brand">
@@ -799,7 +820,6 @@
             </div>
         </header>
 
-        <!-- TABS -->
         <nav class="admin-tabs">
             <div class="admin-tabs-inner">
                 <button class="admin-tab active" data-tab="dashboard" onclick="abrirTab('dashboard')">📊 Dashboard</button>
@@ -811,11 +831,9 @@
             </div>
         </nav>
 
-        <!-- MAIN -->
         <main class="admin-main">
             <div class="container">
 
-                <!-- ========== DASHBOARD ========== -->
                 <section class="admin-section active" id="tab-dashboard">
                     <h2 class="section-title">Dashboard</h2>
                     <p class="section-sub">Visão geral da loja</p>
@@ -851,7 +869,7 @@
                         </div>
                     </div>
 
-                    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                    <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;">
                         <h3 style="font-size:1.1rem;margin-bottom:12px;">🚀 Comece agora</h3>
                         <p style="color:var(--text-muted);font-size:.92rem;margin-bottom:16px;">
                             Adicione produtos para que eles apareçam na loja automaticamente.
@@ -862,7 +880,6 @@
                     </div>
                 </section>
 
-                <!-- ========== PRODUTOS ========== -->
                 <section class="admin-section" id="tab-produtos">
                     <h2 class="section-title">Produtos</h2>
                     <p class="section-sub">Gerencie os produtos da sua loja</p>
@@ -877,7 +894,6 @@
                     <div class="admin-product-list" id="listaProdutos"></div>
                 </section>
 
-                <!-- ========== PEDIDOS ========== -->
                 <section class="admin-section" id="tab-pedidos">
                     <h2 class="section-title">Pedidos</h2>
                     <p class="section-sub">Acompanhe os pedidos da loja</p>
@@ -939,13 +955,13 @@
             </div>
 
             <div class="form-group">
-                <label>Imagens (URLs) *</label>
-                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">
-                    Cole URLs de imagens. A primeira será a principal.
+                <label>Imagens *</label>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:10px;">
+                    Envie uma foto do celular ou computador. A primeira será a principal.
                 </p>
                 <div class="images-input-list" id="imagesList"></div>
                 <button type="button" class="add-image-btn" onclick="adicionarImageInput()" style="margin-top:10px;">
-                    ➕ Adicionar imagem
+                    ➕ Adicionar outra imagem
                 </button>
             </div>
 
@@ -963,7 +979,6 @@
 
     <div class="toast" id="toast"></div>
 
-    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>

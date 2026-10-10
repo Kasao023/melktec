@@ -1,9 +1,9 @@
 /* =====================================================
-   MELKOTEC — Painel Admin
+   MELKOTEC — Painel Admin (com upload Cloudinary)
    ===================================================== */
 
 // ============================================
-// 🔧 FIREBASE — Projeto Tripe
+// FIREBASE — Projeto Tripe
 // ============================================
 const firebaseConfig = {
     apiKey: "AIzaSyB-P1uCbcSTQoi_boCxNEBGqZxDEvEl_XI",
@@ -13,6 +13,14 @@ const firebaseConfig = {
     storageBucket: "tripe-41584.appspot.com",
     messagingSenderId: "837214494159",
     appId: "1:837214494159:web:0e439d93185f2afc4846ba"
+};
+
+// ============================================
+// CLOUDINARY
+// ============================================
+const CLOUDINARY_CONFIG = {
+    cloudName: "rjbiv952",
+    uploadPreset: "melktec_produtos"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -135,7 +143,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 // ============================================
-// NAVEGAÇÃO ENTRE TABS
+// NAVEGAÇÃO
 // ============================================
 window.abrirTab = function(nome) {
     $$('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -283,7 +291,6 @@ window.abrirModalProduto = function() {
     $('#imagesList').innerHTML = '';
     imageInputCount = 0;
     adicionarImageInput();
-    adicionarImageInput();
 
     $('#modalProduto').classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -322,25 +329,122 @@ window.adicionarImageInput = function(valor = '') {
     const id = 'img_' + imageInputCount;
     const row = document.createElement('div');
     row.className = 'image-input-row';
+    row.dataset.imgId = id;
     row.innerHTML = `
         <div class="image-preview" id="preview_${id}">
-            ${valor ? `<img src="${escapeHtml(valor)}" onerror="this.style.display='none'">` : ''}
+            ${valor ? `<img src="${escapeHtml(valor)}" alt="">` : '📷'}
         </div>
-        <input type="text" class="form-input image-url-input" id="${id}" value="${escapeHtml(valor)}" placeholder="https://..." oninput="atualizarPreview('${id}')">
-        <button type="button" class="icon-btn danger" onclick="this.parentElement.remove()" title="Remover">✕</button>
+        <div class="image-actions">
+            <label class="image-upload-btn" for="file_${id}">
+                📤 Escolher arquivo
+            </label>
+            <input type="file" id="file_${id}" accept="image/*" style="display:none;" onchange="fazerUploadImagem(event, '${id}')">
+            <button type="button" class="image-url-toggle" onclick="toggleUrlField('${id}')">Usar URL manual</button>
+            <div class="image-url-field" id="urlfield_${id}">
+                <input type="text" class="image-url-input" id="${id}" value="${escapeHtml(valor)}" placeholder="https://..." oninput="atualizarPreview('${id}')">
+            </div>
+            <div class="image-progress" id="progress_${id}">
+                <div class="image-progress-bar" id="progressbar_${id}"></div>
+            </div>
+        </div>
+        <button type="button" class="icon-btn danger" onclick="removerImageInput('${id}')" title="Remover">✕</button>
     `;
     $('#imagesList').appendChild(row);
+};
+
+window.removerImageInput = function(id) {
+    const row = document.querySelector(`.image-input-row[data-img-id="${id}"]`);
+    if (row) row.remove();
+};
+
+window.toggleUrlField = function(id) {
+    const field = document.getElementById('urlfield_' + id);
+    if (field) field.classList.toggle('active');
 };
 
 window.atualizarPreview = function(id) {
     const input = document.getElementById(id);
     const preview = document.getElementById('preview_' + id);
+    if (!input || !preview) return;
     const url = input.value.trim();
     if (url) {
-        preview.innerHTML = `<img src="${escapeHtml(url)}" onerror="this.parentNode.innerHTML='❌'">`;
+        preview.innerHTML = `<img src="${escapeHtml(url)}" alt="" onerror="this.parentNode.innerHTML='❌'">`;
     } else {
-        preview.innerHTML = '';
+        preview.innerHTML = '📷';
     }
+};
+
+// ============================================
+// UPLOAD CLOUDINARY
+// ============================================
+window.fazerUploadImagem = function(event, id) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        toast('⚠️ Selecione um arquivo de imagem', 'error');
+        return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+        toast('⚠️ Imagem muito grande (máx 10 MB)', 'error');
+        return;
+    }
+
+    const preview = document.getElementById('preview_' + id);
+    const progress = document.getElementById('progress_' + id);
+    const progressBar = document.getElementById('progressbar_' + id);
+    const urlInput = document.getElementById(id);
+
+    progress.classList.add('active');
+    progressBar.style.width = '0%';
+    preview.innerHTML = '⏳';
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
+
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CONFIG.cloudName}/image/upload`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+
+    xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) {
+            const pct = (e.loaded / e.total) * 100;
+            progressBar.style.width = pct + '%';
+        }
+    };
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            try {
+                const data = JSON.parse(xhr.responseText);
+                urlInput.value = data.secure_url;
+                preview.innerHTML = `<img src="${data.secure_url}" alt="">`;
+                progress.classList.remove('active');
+                toast('✅ Imagem enviada!', 'success');
+            } catch (err) {
+                console.error('Erro parse:', err);
+                toast('❌ Erro ao processar resposta', 'error');
+                preview.innerHTML = '❌';
+                progress.classList.remove('active');
+            }
+        } else {
+            console.error('Erro upload:', xhr.status, xhr.responseText);
+            toast('❌ Erro no upload (' + xhr.status + ')', 'error');
+            preview.innerHTML = '❌';
+            progress.classList.remove('active');
+        }
+    };
+
+    xhr.onerror = () => {
+        toast('❌ Erro de rede no upload', 'error');
+        preview.innerHTML = '❌';
+        progress.classList.remove('active');
+    };
+
+    xhr.send(formData);
 };
 
 // ============================================
@@ -501,7 +605,7 @@ window.excluirPedido = async function(id) {
 };
 
 // ============================================
-// FECHAR MODAL COM ESC
+// ATALHOS
 // ============================================
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') fecharModalProduto();

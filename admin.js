@@ -3,18 +3,16 @@
    ===================================================== */
 
 // ============================================
-// 🔧 CONFIGURAÇÃO FIREBASE
+// 🔧 FIREBASE — Projeto Tripe
 // ============================================
-// ⚠️ SUBSTITUA pelas chaves do SEU projeto Firebase
-// Crie um projeto novo em: https://console.firebase.google.com
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY_AQUI",
-    authDomain: "melktec-loja.firebaseapp.com",
-    databaseURL: "https://melktec-loja-default-rtdb.firebaseio.com",
-    projectId: "melktec-loja",
-    storageBucket: "melktec-loja.firebasestorage.app",
-    messagingSenderId: "000000000000",
-    appId: "1:000000000000:web:0000000000000000000000"
+    apiKey: "AIzaSyB-P1uCbcSTQoi_boCxNEBGqZxDEvEl_XI",
+    authDomain: "tripe-41584.firebaseapp.com",
+    databaseURL: "https://tripe-41584.firebaseio.com",
+    projectId: "tripe-41584",
+    storageBucket: "tripe-41584.appspot.com",
+    messagingSenderId: "837214494159",
+    appId: "1:837214494159:web:0e439d93185f2afc4846ba"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -151,7 +149,6 @@ window.abrirTab = function(nome) {
 // CARREGAR DADOS
 // ============================================
 function carregarTudo() {
-    // Produtos
     db.ref('produtos').on('value', (snap) => {
         produtos = [];
         snap.forEach(child => {
@@ -164,7 +161,6 @@ function carregarTudo() {
         toast('Erro ao carregar produtos', 'error');
     });
 
-    // Pedidos
     db.ref('pedidos').on('value', (snap) => {
         pedidos = [];
         snap.forEach(child => {
@@ -284,7 +280,6 @@ window.abrirModalProduto = function() {
     $('#produtoAtivo').checked = true;
     $('#modalProdutoTitle').textContent = 'Novo Produto';
 
-    // Limpa imagens
     $('#imagesList').innerHTML = '';
     imageInputCount = 0;
     adicionarImageInput();
@@ -313,7 +308,6 @@ window.editarProduto = function(id) {
     $('#produtoAtivo').checked = p.ativo !== false;
     $('#modalProdutoTitle').textContent = 'Editar Produto';
 
-    // Preenche imagens
     $('#imagesList').innerHTML = '';
     imageInputCount = 0;
     const imgs = p.images && p.images.length ? p.images : [''];
@@ -362,12 +356,10 @@ window.salvarProduto = async function() {
     const desc = $('#produtoDesc').value.trim();
     const ativo = $('#produtoAtivo').checked;
 
-    // Pega imagens (remove vazias)
     const images = Array.from(document.querySelectorAll('.image-url-input'))
         .map(i => i.value.trim())
         .filter(url => url);
 
-    // Validações
     if (!nome) { toast('⚠️ Digite o nome do produto', 'error'); return; }
     if (!preco || preco <= 0) { toast('⚠️ Digite um preço válido', 'error'); return; }
     if (!desc) { toast('⚠️ Digite uma descrição', 'error'); return; }
@@ -472,7 +464,7 @@ function renderizarPedidos() {
                     </div>
                     <div style="font-size:.85rem;color:var(--text-muted);">
                         Método: <strong>${escapeHtml(p.metodo || '-')}</strong>
-                        ${p.orderId ? ` • ID: ${escapeHtml(p.orderId.substring(0, 20))}...` : ''}
+                        ${p.orderId ? ` • ID: ${escapeHtml(String(p.orderId).substring(0, 20))}...` : ''}
                     </div>
                     <div class="admin-order-items">
                         <ul>${items}</ul>

@@ -3,16 +3,16 @@
    ===================================================== */
 
 // ============================================
-// 🔧 FIREBASE — SUBSTITUA PELAS SUAS CHAVES
+// 🔧 FIREBASE — Projeto Tripe
 // ============================================
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY_AQUI",
-    authDomain: "melktec-loja.firebaseapp.com",
-    databaseURL: "https://melktec-loja-default-rtdb.firebaseio.com",
-    projectId: "melktec-loja",
-    storageBucket: "melktec-loja.firebasestorage.app",
-    messagingSenderId: "000000000000",
-    appId: "1:000000000000:web:0000000000000000000000"
+    apiKey: "AIzaSyB-P1uCbcSTQoi_boCxNEBGqZxDEvEl_XI",
+    authDomain: "tripe-41584.firebaseapp.com",
+    databaseURL: "https://tripe-41584.firebaseio.com",
+    projectId: "tripe-41584",
+    storageBucket: "tripe-41584.appspot.com",
+    messagingSenderId: "837214494159",
+    appId: "1:837214494159:web:0e439d93185f2afc4846ba"
 };
 
 firebase.initializeApp(firebaseConfig);
